@@ -1,0 +1,36 @@
+{% extends 'todoapp/index.html' %}
+
+{% block content %}
+<br>
+<div class="container"></div>
+    <div class="row justify-content-center">
+        <div class="col-md-5 d-flex justify-content-center flex-column">
+            <h5 class="center">TODO LIST</h5>
+
+            <div class="card card-body">
+            <form action="" method='POST'>  
+                {% csrf_token %}
+                <p class="center">
+                    {{form}}
+                    <input type="submit">
+                </p>
+            </form>
+        </div>
+        <div class="card card-body">
+            <div class="d-flex justify-content-center">
+                <table class="table table-sm">
+                    <tbody>
+                      {% for list in lists %}
+                        <tr>
+                          <td>{{ list }}</td>
+                          <td><a class="btn btn-sm btn-info" href="{% url 'update_list' list.id %}">Update</a></td>
+                          <td><a class="btn btn-sm btn-danger" href="{% url 'delete_list' list.id %}">Delete</a></td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
