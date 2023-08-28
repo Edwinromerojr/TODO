@@ -20,11 +20,11 @@
             <div class="d-flex justify-content-center">
                 <table class="table table-sm">
                     <tbody>
-                      {% for list in lists %}
+                      {% for guest in guests %}
                         <tr>
-                          <td>{{ list }}</td>
-                          <td><a class="btn btn-sm btn-info" href="{% url 'update_list' list.id %}">Update</a></td>
-                          <td><a class="btn btn-sm btn-danger" href="{% url 'delete_list' list.id %}">Delete</a></td>
+                          <td>{{ guest }}</td>
+                          <td><a class="btn btn-sm btn-info" href="{% url 'update_list' guest.id %}">Update</a></td>
+                          <td><a class="btn btn-sm btn-danger" href="{% url 'delete_list' guest.id %}">Delete</a></td>
                         </tr>
                       {% endfor %}
                     </tbody>
