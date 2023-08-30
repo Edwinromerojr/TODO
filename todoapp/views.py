@@ -59,11 +59,14 @@ def index(request):
     guests = request.user.guest.list_set.all()
     guest = Guest.objects.get(user=request.user)
     lists = List.objects.all()
-    form = ListForm(initial={'guest':guest})
+    initial_data = {'guest': guest}
+    form = ListForm(initial=initial_data)
     if request.method == 'POST':
         form = ListForm(request.POST)
         if form.is_valid():
-            form.save()
+            list_instance = form.save(commit=False)
+            list_instance.guest = guest
+            list_instance.save()
             return redirect('/')
     context = {'lists': lists, 'form': form, 'guests':guests}
     return render(request, 'todoapp/todo.html', context)
